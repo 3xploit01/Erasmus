@@ -57,7 +57,7 @@ void reconnect() {
    clientId += String(random(0xffff), HEX);
    if (client.connect(clientId.c_str())) {
      Serial.println("connected");
-     client.publish("topic", "ESP connected");
+     client.publish("connections", "ESP connected");
      client.subscribe("topic");
    } else {
      Serial.print("failed, rc=");
