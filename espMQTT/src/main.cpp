@@ -41,9 +41,9 @@ void callback(char* topic, byte* payload, unsigned int length) {
   } else if (msgIN == "led0") {
     digitalWrite(LED_BUILTIN, LOW);
   } else if (msgIN == "relay1") {
-    digitalWrite(13, HIGH);
+    digitalWrite(7, HIGH);
   } else if (msgIN == "relay0") {
-    digitalWrite(13, LOW);
+    digitalWrite(7, LOW);
   }
 
   // ------------------------------------
@@ -78,7 +78,7 @@ void setup(void) {
   client.setCallback(callback);
 
   pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(13, OUTPUT);
+  pinMode(7, OUTPUT);
 }
 
 void loop(void) {
