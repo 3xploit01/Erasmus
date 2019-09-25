@@ -88,5 +88,5 @@ void loop(void) {
 
   client.loop();
 
-  u8g2.clearBuffer();					// clear the internal memory
+  u8g2.clearBuffer();					// clear the internal oled display memory
 }
