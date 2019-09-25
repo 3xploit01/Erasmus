@@ -41,9 +41,9 @@ void callback(char* topic, byte* payload, unsigned int length) {
   } else if (msgIN == "led0") {
     digitalWrite(LED_BUILTIN, LOW);
   } else if (msgIN == "relay1") {
-    digitalWrite(7, HIGH);
+    digitalWrite(13, HIGH);
   } else if (msgIN == "relay0") {
-    digitalWrite(7, LOW);
+    digitalWrite(13, LOW);
   }
 
   // ------------------------------------
@@ -59,6 +59,19 @@ void reconnect() {
      Serial.println("connected");
      client.publish("connections", "ESP connected");
      client.subscribe("topic");
+     digitalWrite(LED_BUILTIN, LOW);
+     delay(250);
+     digitalWrite(LED_BUILTIN, HIGH);
+     delay(250);
+     digitalWrite(LED_BUILTIN, LOW);
+     delay(250);
+     digitalWrite(LED_BUILTIN, HIGH);
+     delay(250);
+     digitalWrite(LED_BUILTIN, LOW);
+     delay(250);
+     digitalWrite(LED_BUILTIN, HIGH);
+     delay(250);
+     digitalWrite(LED_BUILTIN, LOW);
    } else {
      Serial.print("failed, rc=");
      Serial.print(client.state());
@@ -78,7 +91,7 @@ void setup(void) {
   client.setCallback(callback);
 
   pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(7, OUTPUT);
+  pinMode(13, OUTPUT);
 }
 
 void loop(void) {
