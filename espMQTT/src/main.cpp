@@ -41,9 +41,9 @@ void callback(char* topic, byte* payload, unsigned int length) {
   } else if (msgIN == "led0") {
     digitalWrite(LED_BUILTIN, LOW);
   } else if (msgIN == "relay1") {
-    digitalWrite(13, HIGH);
+    digitalWrite(12, HIGH);
   } else if (msgIN == "relay0") {
-    digitalWrite(13, LOW);
+    digitalWrite(12, LOW);
   }
 
   // ------------------------------------
@@ -57,8 +57,21 @@ void reconnect() {
    clientId += String(random(0xffff), HEX);
    if (client.connect(clientId.c_str())) {
      Serial.println("connected");
-     client.publish("topic", "ESP connected");
+     client.publish("connections", "ESP connected");
      client.subscribe("topic");
+     digitalWrite(LED_BUILTIN, LOW);
+     delay(250);
+     digitalWrite(LED_BUILTIN, HIGH);
+     delay(250);
+     digitalWrite(LED_BUILTIN, LOW);
+     delay(250);
+     digitalWrite(LED_BUILTIN, HIGH);
+     delay(250);
+     digitalWrite(LED_BUILTIN, LOW);
+     delay(250);
+     digitalWrite(LED_BUILTIN, HIGH);
+     delay(250);
+     digitalWrite(LED_BUILTIN, LOW);
    } else {
      Serial.print("failed, rc=");
      Serial.print(client.state());
@@ -78,7 +91,7 @@ void setup(void) {
   client.setCallback(callback);
 
   pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(13, OUTPUT);
+  pinMode(12, OUTPUT);
 }
 
 void loop(void) {
@@ -88,5 +101,5 @@ void loop(void) {
 
   client.loop();
 
-  u8g2.clearBuffer();					// clear the internal memory
+  u8g2.clearBuffer();					// clear the internal oled display memory
 }
