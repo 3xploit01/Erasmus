@@ -1,11 +1,3 @@
-// DHT Temperature & Humidity Sensor
-// Unified Sensor Library Example
-// Written by Tony DiCola for Adafruit Industries
-// Released under an MIT license.
-
-// REQUIRES the following Arduino libraries:
-// - DHT Sensor Library: https://github.com/adafruit/DHT-sensor-library
-// - Adafruit Unified Sensor Lib: https://github.com/adafruit/Adafruit_Sensor
 #include <Arduino.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
@@ -172,7 +164,7 @@ void loop() {
   String tempToString = String(event.temperature);
   String tempString = "Temperature: " + tempToString;
 
-  client.publish("sLog", String(tempString).c_str());
+  client.publish("OGtemp", String(tempString).c_str());
   client.publish("sTemp", String(event.temperature).c_str());
 
   // Get humidity event and print its value.
@@ -198,7 +190,7 @@ void loop() {
   String humToString = String(event.relative_humidity);
   String humString = "Humidity: " + humToString;
 
-  client.publish("sLog", String(humString).c_str());
+  client.publish("OGtemp", String(humString).c_str());
   client.publish("sHumidity", String(event.relative_humidity).c_str());
 
   if (!client.connected()) {
