@@ -1,11 +1,16 @@
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
+#include <Adafruit_Sensor.h>
+#include <DHT.h>
+
+#define DHTPIN 2
+#define DHTTYPE DHT11
+DHT dht(DHTPIN, DHTTYPE);
 
 const char* ssid = "Fibaro";
 const char* password = "";
 const char* mqtt_server = "192.168.1.80";
-
 WiFiClient espClient;
 PubSubClient client(espClient);
 long lastMsg = 0;
@@ -15,6 +20,15 @@ int value = 0;
 void setup_wifi() {
   delay(10);
   WiFi.begin(ssid, password);
+
+ dht.begin();
+}
+
+void temperature() {
+  float t = dht.readTemperature();
+
+  client.publish("testTemp", String(t).c_str());
+  delay(500);
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
@@ -34,10 +48,6 @@ void callback(char* topic, byte* payload, unsigned int length) {
   } else if (msgString == "led0") {
     digitalWrite(14, LOW);
     Serial.println("triggered elsif");
-  } else if (msgString == "relay1") {
-    digitalWrite(12, HIGH);
-  } else if (msgString == "relay0") {
-    digitalWrite(12, LOW);
   }
 
   // ------------------------------------
@@ -53,19 +63,6 @@ void reconnect() {
      Serial.println("connected");
      client.publish("testTopic", "ESP connected");
      client.subscribe("testTopic");
-     digitalWrite(LED_BUILTIN, LOW);
-     delay(250);
-     digitalWrite(LED_BUILTIN, HIGH);
-     delay(250);
-     digitalWrite(LED_BUILTIN, LOW);
-     delay(250);
-     digitalWrite(LED_BUILTIN, HIGH);
-     delay(250);
-     digitalWrite(LED_BUILTIN, LOW);
-     delay(250);
-     digitalWrite(LED_BUILTIN, HIGH);
-     delay(250);
-     digitalWrite(LED_BUILTIN, LOW);
    } else {
      Serial.print("failed, rc=");
      Serial.print(client.state());
@@ -85,9 +82,12 @@ void setup(void) {
 }
 
 void loop(void) {
+
   if (!client.connected()) {
     reconnect();
   }
 
   client.loop();
+
+  temperature();
 }

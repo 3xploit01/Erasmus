@@ -1,11 +1,12 @@
 -IC:/Users/be20020109/Documents/GitHub/Erasmus/Erasmus/mqttErasmus1/include
 -IC:/Users/be20020109/Documents/GitHub/Erasmus/Erasmus/mqttErasmus1/src
+-IC:/Users/be20020109/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266WiFi/src
+-IC:/Users/be20020109/.platformio/lib/PubSubClient_ID89/src
 -IC:/Users/be20020109/.platformio/packages/framework-arduinoespressif8266/tools/sdk/include
 -IC:/Users/be20020109/.platformio/packages/framework-arduinoespressif8266/tools/sdk/libc/xtensa-lx106-elf/include
 -IC:/Users/be20020109/.platformio/packages/framework-arduinoespressif8266/cores/esp8266
 -IC:/Users/be20020109/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lwip2/include
 -IC:/Users/be20020109/.platformio/packages/framework-arduinoespressif8266/variants/nodemcu
--IC:/Users/be20020109/.platformio/lib/PubSubClient_ID89/src
 -IC:/Users/be20020109/.platformio/lib/U8g2_ID942/src
 -IC:/Users/be20020109/.platformio/lib/WiFi_ID870/src
 -IC:/Users/be20020109/.platformio/lib/WifiManager_ID567
@@ -20,7 +21,6 @@
 -IC:/Users/be20020109/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266SSDP
 -IC:/Users/be20020109/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266SdFat/src
 -IC:/Users/be20020109/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266WebServer/src
--IC:/Users/be20020109/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266WiFi/src
 -IC:/Users/be20020109/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266WiFiMesh/src
 -IC:/Users/be20020109/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266httpUpdate/src
 -IC:/Users/be20020109/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266mDNS/src
